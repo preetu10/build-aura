@@ -1,7 +1,11 @@
 import { FaSignInAlt } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
-import "./Nav.css"
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../../customHooks/useAuth";
+import { toast } from "react-toastify";
 const Navbar = () => {
+
+  const {user,logout}=useAuth();
+  const navigate = useNavigate();
     const links=
     <>
     <li className="text-lg font-semibold"><NavLink to="/"  style={({ isActive}) => {
@@ -21,6 +25,16 @@ const Navbar = () => {
       }}
     >Apartment</NavLink></li>
     </>
+     const handleLogOut = () => {
+      logout()
+        .then(() => {
+          toast("You have successfully logged out");
+          navigate("/");
+        })
+        .catch(() => {
+          console.log("error");
+        });
+    };
     return (
         <div className="navbar bg-base-100">
   <div className="navbar-start">
@@ -42,9 +56,63 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <Link to="/login">
-   <button className="btn px-4 bg-[#1967D2] text-lg text-white">LogIn<FaSignInAlt></FaSignInAlt></button>
+     {user ? (
+          <>
+            <div className="dropdown dropdown-end ">
+              <a className="my-anchor-element-id">
+                <button
+                  className="btn-ghost  rounded-full w-9 h-9 lg:w-12 lg:h-12 tooltip tooltip-bottom"
+                  data-tip={user.displayName}
+                >
+                  <img
+                    src={user?.photoURL}
+                    onTouchMove={user.displayName}
+                    className="rounded-full w-9 h-9  ml-1 lg:w-12 lg:h-12 lg:mr-3"
+                    alt="user"
+                  />
+                </button>
+              </a>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-2 z-[20] p-2 bg-[#f3f0ec] shadow  rounded-box w-36"
+              >
+                <li className="p-2">
+                  <button className="btn btn-ghost text-base font-medium text-black">
+                    {" "}
+                    <Link >
+                      My Profile
+                    </Link>
+                  </button>
+                  <hr></hr>
+                </li>
+                <li className="p-2">
+                  <button className="btn btn-ghost text-base font-medium text-black">
+                    {" "}
+                    <Link >
+                      Dashboard
+                    </Link>
+                  </button>
+                  <hr></hr>
+                </li>
+                <li>
+                  <button
+                    onClick={handleLogOut}
+                    className="btn btn-ghost text-base font-medium text-black"
+                  >
+                    Log Out
+                  </button>
+                  <hr></hr>
+                </li>
+              </ul>
+            </div>
+          </>
+        ) : (
+          <>
+           <Link to="/login">
+   <button className="btn px-4 bg-[#1967D2] text-lg text-white">Log In<FaSignInAlt></FaSignInAlt></button>
   </Link>
+          </>
+        )}
   </div>
 </div>
     );
