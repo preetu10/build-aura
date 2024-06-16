@@ -7,9 +7,11 @@ import login from "../../public/login.json"
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import useAuth from "../customHooks/useAuth";
+import useAxiosPublic from "../customHooks/useAxiosPublic";
 const LogIn = () => {
     const [showPW, setShowPW] = useState(false);
     const {signInUser,signInWithGoogle}=useAuth();
+    const axiosPublic = useAxiosPublic();
     const navigate=useNavigate();
     const handleLogin=e=>{
       e.preventDefault();
@@ -28,9 +30,28 @@ const LogIn = () => {
     }
     const handleGoogle = () => {
       signInWithGoogle()
-        .then(() => {
-          toast.success("You have successfully logged in.");
-          navigate("/");
+        .then((res) => {
+          console.log(res);
+          const userInfo = {
+            name: res.user?.displayName,
+            email: res.user?.email,
+            image: res.user?.photoURL,
+            role: "user",
+          };
+          axiosPublic.post("/users",userInfo)
+            .then((res) => {
+                if(res.data.insertedId){
+                  console.log("first inserted to db");
+                    toast.success("You have successfully logged in!");
+                    navigate("/");
+                }
+                else{
+                  toast.success("You have successfully logged in!");
+                  navigate("/");
+                }
+            })
+          
+        
         })
         .catch((error) => {
           console.error(error);
