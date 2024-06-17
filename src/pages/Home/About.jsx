@@ -9,7 +9,7 @@ const About = () => {
       ></SectionHeading>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5  lg:gap-10 my-6 items-center">
         <div>
-          <img src="/public/about.jpg" alt="" className="rounded-2xl px-2" />
+          <img src="/about.jpg" alt="" className="rounded-2xl px-2" />
         </div>
         <div className="text-lg text-gray-600 px-2">
           Welcome to BuildAura, where modern living meets comfort in the heart
