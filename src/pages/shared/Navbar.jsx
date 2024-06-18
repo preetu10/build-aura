@@ -47,7 +47,7 @@ const Navbar = () => {
       </ul>
     </div>
     <a href="/" className="btn btn-ghost text-xl">
-        <img src="logo.png" alt="" className="w-10 h-10 rounded-full" />
+        <img src="/logo.png" alt="" className="w-10 h-10 rounded-full" />
         <span className="text-3xl text-[#202124] font-semibold">Build<span className="text-[#1967D2]">Aura</span></span></a>
   </div>
   <div className="navbar-center hidden lg:flex">
@@ -61,12 +61,10 @@ const Navbar = () => {
             <div className="dropdown dropdown-end ">
               <a className="my-anchor-element-id">
                 <button
-                  className="btn-ghost  rounded-full w-8 h-8 lg:w-12 lg:h-12 tooltip tooltip-left lg:tooltip-bottom"
-                  data-tip={user.displayName}
+                  className="btn-ghost  rounded-full w-8 h-8 lg:w-12 lg:h-12"
                 >
                   <img
                     src={user?.photoURL}
-                    onTouchMove={user.displayName}
                     className="rounded-full w-8 h-8  lg:w-12 lg:h-12 lg:mr-3"
                     alt="user"
                   />
@@ -74,21 +72,19 @@ const Navbar = () => {
               </a>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-2 z-[20] p-2 bg-[#f3f0ec] shadow  rounded-box w-32"
+                className="menu menu-sm dropdown-content mt-2 z-[20] p-2 bg-[#f3f0ec] shadow  rounded-box w-36"
               >
                 <li className="p-2">
-                  <button className="btn btn-ghost text-base font-medium text-black">
+                  <p className="text-center  text-base font-medium text-black">
                     {" "}
-                    <Link >
-                      My Profile
-                    </Link>
-                  </button>
+                    {user.displayName}
+                  </p>
                   <hr></hr>
                 </li>
                 <li className="p-2">
                   <button className="btn btn-ghost text-base font-medium text-black">
                     {" "}
-                    <Link >
+                    <Link to={`/dashboard/${user.email}`}>
                       Dashboard
                     </Link>
                   </button>

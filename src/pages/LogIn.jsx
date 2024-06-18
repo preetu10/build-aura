@@ -1,5 +1,5 @@
 import { FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import Lottie from "lottie-react";
@@ -13,6 +13,8 @@ const LogIn = () => {
     const {signInUser,signInWithGoogle}=useAuth();
     const axiosPublic = useAxiosPublic();
     const navigate=useNavigate();
+    const location=useLocation();
+    const from=location.state?.from?.pathname || '/';
     const handleLogin=e=>{
       e.preventDefault();
       const email=e.target.email.value;
@@ -21,7 +23,7 @@ const LogIn = () => {
       signInUser(email, password)
       .then(() => {
         toast.success("You have successfully logged in.");
-          navigate("/");
+          navigate(from,{replace:true});
       })
       .catch((error) => {
         console.error(error);
@@ -43,11 +45,11 @@ const LogIn = () => {
                 if(res.data.insertedId){
                   console.log("first inserted to db");
                     toast.success("You have successfully logged in!");
-                    navigate("/");
+                    navigate(from,{replace:true});
                 }
                 else{
                   toast.success("You have successfully logged in!");
-                  navigate("/");
+                  navigate(from,{replace:true});
                 }
             })
           
