@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa6";
 import { NavLink, useNavigate} from "react-router-dom";
 import useAuth from "../../customHooks/useAuth";
+import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../customHooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -22,7 +23,7 @@ const Sidebar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
-  const { isPending, data: userPro } = useQuery({
+  const { isPending, data: userPro={} } = useQuery({
     queryKey: ["userPro", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/${user?.email}`);
@@ -38,7 +39,7 @@ const Sidebar = () => {
   const handleLogOut = () => {
     logout()
       .then(() => {
-        toast("You have successfully logged out");
+        toast.success("You have successfully logged out");
         navigate("/");
       })
       .catch(() => {
@@ -47,14 +48,15 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="">
+    <div className="md:min-h-screen">
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+     
+       <div className="drawer-content flex flex-col items-start justify-left">
           {/* Page content here */}
           <label
             htmlFor="my-drawer-2"
-            className="btn m-4 drawer-button lg:hidden"
+            className="btn m-4 drawer-button lg:hidden text-left"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +73,8 @@ const Sidebar = () => {
             </svg>
           </label>
         </div>
-        <div className="drawer-side">
+     
+        <div className="drawer-side z-[20] ">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
@@ -102,7 +105,7 @@ const Sidebar = () => {
               <>
                 <li>
                   <NavLink
-                    to={`/dashboard`}
+                    to={`/dashboard/my-profile`}
                     className="text-base"
                     style={({ isActive }) => {
                       return {
@@ -139,7 +142,7 @@ const Sidebar = () => {
               <>
                 <li>
                   <NavLink
-                    to={`/dashboard`}
+                    to={`/dashboard/my-profile`}
                     className="text-base"
                     style={({ isActive }) => {
                       return {
@@ -208,7 +211,7 @@ const Sidebar = () => {
               <>
                 <li>
                   <NavLink
-                    to={`/dashboard`}
+                    to={`/dashboard/my-profile`}
                     className="text-base"
                     style={({ isActive }) => {
                       return {
@@ -352,6 +355,7 @@ const Sidebar = () => {
           </ul>
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

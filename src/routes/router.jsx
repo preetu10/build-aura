@@ -8,6 +8,8 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import MyProfile from "../pages/Dashboard/MyProfile";
 import Announcements from "../pages/Dashboard/Announcements";
 import PrivateRoutes from "./PrivateRoute";
+import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement";
+import ManageMembers from "../pages/Dashboard/ManageMembers";
 
 const router = createBrowserRouter([
   {
@@ -36,12 +38,20 @@ const router = createBrowserRouter([
     children:[
       // user and member common routes
         {
-          path:"/dashboard",
+          path:"/dashboard/my-profile",
           element:<PrivateRoutes><MyProfile></MyProfile></PrivateRoutes>
        },
        {
         path:"/dashboard/announcements",
         element:<PrivateRoutes><Announcements></Announcements></PrivateRoutes>
+       },
+       {
+        path:"/dashboard/make-announcements",
+        element:<PrivateRoutes><MakeAnnouncement></MakeAnnouncement></PrivateRoutes>
+       },
+       {
+        path:"/dashboard/manage-members",
+        element:<PrivateRoutes><ManageMembers></ManageMembers></PrivateRoutes>
        }
       ]
     }

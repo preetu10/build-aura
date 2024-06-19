@@ -84,7 +84,7 @@ const Navbar = () => {
                 <li className="p-2">
                   <button className="btn btn-ghost text-base font-medium text-black">
                     {" "}
-                    <Link to={`/dashboard/${user.email}`}>
+                    <Link to={`/dashboard/my-profile`}>
                       Dashboard
                     </Link>
                   </button>
