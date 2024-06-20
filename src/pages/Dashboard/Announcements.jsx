@@ -7,13 +7,13 @@ import { Helmet } from "react-helmet-async";
 const Announcements = () => {
     const axiosSecure=useAxiosSecure();
     const {isPending,data:announcements=[]}=useQuery({
-        queryKey:"announcements",
+        queryKey:["announcements"],
         queryFn:async()=>{
             const {data}=await axiosSecure.get("/announcements");
             return data;
         }
     })
-    console.log(announcements);
+    //console.log(announcements);
     if (isPending)
         return (
           <span className=" mx-auto mt-24 loading loading-dots loading-lg"></span>

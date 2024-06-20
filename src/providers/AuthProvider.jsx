@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
     return ()=>{
         unSubscribe();
     }
-  },[])
+  },[axiosPublic])
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
   };
   const signInWithGoogle = () => {
     setLoading(true);
-    console.log("hi");
+    // console.log("hi");
     return signInWithPopup(auth, provider);
   };
   const logout = () => {

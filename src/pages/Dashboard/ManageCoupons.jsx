@@ -17,7 +17,7 @@ const ManageCoupons = () => {
     refetch,
     isPending,
   } = useQuery({
-    queryKey: "coupons",
+    queryKey: ["coupons"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/get-all-coupons");
       return data;

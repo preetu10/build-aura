@@ -1,15 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../customHooks/useAxiosPublic";
 import SectionHeading from "../shared/SectionHeading";
 import CouponCard from "./CouponCard";
+import useAxiosSecure from "../../customHooks/useAxiosSecure";
 
 const Coupon = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: coupons = [],isPending } = useQuery({
     queryKey: ["coupons"],
     queryFn: async () => {
-      const { data } = await axiosPublic.get("/coupons");
+      const { data } = await axiosSecure.get("/coupons");
       return data;
     },
   });

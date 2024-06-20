@@ -22,7 +22,7 @@ const SignUp = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const image = e.target.image.value;
-    console.log(name, email, password);
+    //console.log(name, email, password);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       toast.error("Please enter a valid email address");

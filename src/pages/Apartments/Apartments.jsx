@@ -7,7 +7,7 @@ import ApartmentCard from "./ApartmentCard";
 const Apartments = () => {
     const axiosPublic=useAxiosPublic();
     const {data:apartments=[],isPending,refetch}=useQuery({
-        queryKey:"apartments",
+        queryKey:["apartments"],
         queryFn:async()=>{
             const {data}=await axiosPublic.get("/apartments");
             return data;

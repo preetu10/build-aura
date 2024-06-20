@@ -12,6 +12,7 @@ import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement";
 import ManageMembers from "../pages/Dashboard/ManageMembers";
 import ManageCoupons from "../pages/Dashboard/ManageCoupons";
 import Apartments from "../pages/Apartments/Apartments";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -33,36 +34,36 @@ const router = createBrowserRouter([
         },
         {
           path:"/apartments",
-          element:<PrivateRoutes><Apartments></Apartments></PrivateRoutes>
+          element:<Apartments></Apartments>
         }
     ],
   },
   {
-    path:"/dashboard",
+    path:"dashboard",
     element:<PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
     errorElement:<Error></Error>,
     children:[
       // user,admin and member common private routes
         {
-          path:"/dashboard/my-profile",
-          element:<PrivateRoutes><MyProfile></MyProfile></PrivateRoutes>
+          path:"my-profile",
+          element:<MyProfile></MyProfile>
        },
        {
-        path:"/dashboard/announcements",
-        element:<PrivateRoutes><Announcements></Announcements></PrivateRoutes>
+        path:"announcements",
+        element:<Announcements></Announcements>
        },
       //  admin routes
        {
-        path:"/dashboard/make-announcements",
-        element:<PrivateRoutes><MakeAnnouncement></MakeAnnouncement></PrivateRoutes>
+        path:"make-announcements",
+        element:<AdminRoute><MakeAnnouncement></MakeAnnouncement></AdminRoute>
        },
        {
-        path:"/dashboard/manage-members",
-        element:<PrivateRoutes><ManageMembers></ManageMembers></PrivateRoutes>
+        path:"manage-members",
+        element:<AdminRoute><ManageMembers></ManageMembers></AdminRoute>
        },
        {
-        path:"/dashboard/manage-coupon",
-        element:<PrivateRoutes><ManageCoupons></ManageCoupons></PrivateRoutes>
+        path:"manage-coupon",
+        element:<AdminRoute><ManageCoupons></ManageCoupons></AdminRoute>
 
        }
       ]
