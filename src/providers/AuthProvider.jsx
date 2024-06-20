@@ -14,27 +14,30 @@ const AuthProvider = ({ children }) => {
   const provider = new GoogleAuthProvider();
   const axiosPublic=useAxiosPublic();
 
-  useEffect(()=>{
-    const unSubscribe=onAuthStateChanged(auth,currentUser=>{
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, currentUser => {
         setUser(currentUser);
-       if(currentUser){
-        const userInfo={email:currentUser.email};
-        axiosPublic.post('/jwt',userInfo)
-        .then(res=>{
-          if(res.data.token){
-            localStorage.setItem('access_token',res.data.token);
-          }
-        })
-       }
-       else{
-          localStorage.removeItem('access_token');
-       }
-        setLoading(false);
-    })
-    return ()=>{
-        unSubscribe();
+        if (currentUser) {
+            const userInfo = { email: currentUser.email };
+            axiosPublic.post('/jwt', userInfo)
+                .then(res => {
+                    if (res.data.token) {
+                        localStorage.setItem('access-token', res.data.token);
+                       // console.log(res.data.token);
+                        setLoading(false);
+                    }
+                })
+        }
+        else {
+            // localStorage.removeItem('access-token');
+            // setLoading(false);
+        }
+        
+    });
+    return () => {
+        return unsubscribe();
     }
-  },[axiosPublic])
+}, [axiosPublic])
 
   const createUser = (email, password) => {
     setLoading(true);

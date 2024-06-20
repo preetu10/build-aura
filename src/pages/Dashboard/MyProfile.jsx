@@ -42,7 +42,7 @@ const MyProfile = () => {
       {userPro.role === "admin" ? (
         <AdminSpecial></AdminSpecial>
       ) : (
-        <MyAgreements></MyAgreements>
+        <MyAgreements user={userPro}></MyAgreements>
       )}
     </div>
   );

@@ -34,7 +34,7 @@ const Sidebar = () => {
     return (
       <span className=" mx-auto mt-24 loading loading-dots loading-lg"></span>
     );
-  console.log(userPro);
+  console.log(userPro.role);
 
   const handleLogOut = () => {
     logout()

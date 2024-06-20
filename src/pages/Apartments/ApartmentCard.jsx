@@ -3,11 +3,14 @@ import useAuth from "../../customHooks/useAuth";
 import useAxiosSecure from "../../customHooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 const ApartmentCard = ({ apartment, refetch }) => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+  const available=apartment?.status==="Available";
+  console.log(available)
   const handleAgreement = () => {
     if(!user){
         navigate("/login");
@@ -20,6 +23,7 @@ const ApartmentCard = ({ apartment, refetch }) => {
     const apartmentNo = apartment.apartmentNo;
     const rent = apartment.rent;
     const status = "Pending";
+    const requestDate=format(new Date(), 'yyyy-MM-dd');
     const data = {
       id,
       email,
@@ -29,6 +33,7 @@ const ApartmentCard = ({ apartment, refetch }) => {
       apartmentNo,
       rent,
       status,
+      requestDate,
     };
     console.log(data);
     Swal.fire({
@@ -92,6 +97,7 @@ const ApartmentCard = ({ apartment, refetch }) => {
           <div className="card-actions justify-start">
             <button
               onClick={  handleAgreement }
+              disabled={!available}
               className="btn btn-ghost bg-[#1967D2] text-white text-lg font-semibold"
             >
               Agreement

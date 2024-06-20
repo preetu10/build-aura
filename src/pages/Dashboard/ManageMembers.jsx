@@ -20,8 +20,15 @@ const ManageMembers = () => {
         return (
           <span className=" mx-auto mt-24 loading loading-dots loading-lg"></span>
         );
-    const handleDelete = (id) => {
-        //console.log(id);
+    const handleDelete = (member) => {
+        const data={
+          id: member._id,
+          email:member.email,
+          name: member.name,
+          image: member.image,
+          role:"user"
+        }
+        console.log(data);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -32,7 +39,7 @@ const ManageMembers = () => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.patch(`/admin/delete-member/${id}`)
+                axiosSecure.put('/admin/delete-member',data)
                 .then((res) => {
                     if(res.data.modifiedCount > 0) {
                         refetch();
@@ -70,7 +77,7 @@ const ManageMembers = () => {
                     <th>{index+1}</th>
                     <td>{member.name}</td>
                     <td>{member.email}</td>
-                    <td className=""><button className="btn" onClick={()=>{handleDelete(member._id)}}><FaTrash className="text-red-700"></FaTrash></button></td>
+                    <td className=""><button className="btn" onClick={()=>{handleDelete(member)}}><FaTrash className="text-red-700"></FaTrash></button></td>
                   </tr>
                 ))
             }

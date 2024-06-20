@@ -21,7 +21,8 @@ const LogIn = () => {
       const password=e.target.password.value;
      // console.log(email,password);
       signInUser(email, password)
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         toast.success("You have successfully logged in.");
           navigate(from,{replace:true});
       })
@@ -43,7 +44,7 @@ const LogIn = () => {
           axiosPublic.post("/users",userInfo)
             .then((res) => {
                 if(res.data.insertedId){
-                  console.log("first inserted to db");
+                  //console.log("first inserted to db");
                     toast.success("You have successfully logged in!");
                     navigate(from,{replace:true});
                 }
