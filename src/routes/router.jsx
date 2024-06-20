@@ -10,6 +10,7 @@ import Announcements from "../pages/Dashboard/Announcements";
 import PrivateRoutes from "./PrivateRoute";
 import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement";
 import ManageMembers from "../pages/Dashboard/ManageMembers";
+import ManageCoupons from "../pages/Dashboard/ManageCoupons";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
     element:<PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
     errorElement:<Error></Error>,
     children:[
-      // user and member common routes
+      // user,admin and member common private routes
         {
           path:"/dashboard/my-profile",
           element:<PrivateRoutes><MyProfile></MyProfile></PrivateRoutes>
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
         path:"/dashboard/announcements",
         element:<PrivateRoutes><Announcements></Announcements></PrivateRoutes>
        },
+      //  admin routes
        {
         path:"/dashboard/make-announcements",
         element:<PrivateRoutes><MakeAnnouncement></MakeAnnouncement></PrivateRoutes>
@@ -52,6 +54,11 @@ const router = createBrowserRouter([
        {
         path:"/dashboard/manage-members",
         element:<PrivateRoutes><ManageMembers></ManageMembers></PrivateRoutes>
+       },
+       {
+        path:"/dashboard/manage-coupon",
+        element:<PrivateRoutes><ManageCoupons></ManageCoupons></PrivateRoutes>
+
        }
       ]
     }

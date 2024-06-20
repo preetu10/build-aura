@@ -3,6 +3,7 @@ import SectionHeading from "../shared/SectionHeading";
 import useAxiosSecure from "../../customHooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const MakeAnnouncement = () => {
     const axiosSecure=useAxiosSecure();
@@ -31,6 +32,9 @@ const MakeAnnouncement = () => {
     }
   return (
     <div>
+         <Helmet>
+        <title>BuildAura|Admin-Make-Announcement</title>
+      </Helmet>
       <SectionHeading heading={"Make Announcement"} subheading={""} />
       <div className="card  mx-auto mt-8 px-2 shrink-0 w-full md:max-w-xl shadow-amber-600 shadow-md border-t-0 bg-base-100">
         <form onSubmit={handleSubmit} className="card-body">

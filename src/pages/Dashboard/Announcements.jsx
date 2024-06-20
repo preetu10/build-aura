@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../customHooks/useAxiosSecure";
 import SectionHeading from "../shared/SectionHeading";
 import AnnouncementCard from "./AnnouncementCard";
+import { Helmet } from "react-helmet-async";
 
 const Announcements = () => {
     const axiosSecure=useAxiosSecure();
@@ -19,6 +20,9 @@ const Announcements = () => {
         );
   return (
     <div>
+       <Helmet>
+        <title>BuildAura-Announcements</title>
+      </Helmet>
       <SectionHeading
         heading={"Announcements"}
         subheading={"All sorts of announcements are published here."}

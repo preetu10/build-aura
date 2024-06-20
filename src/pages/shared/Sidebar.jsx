@@ -301,7 +301,7 @@ const Sidebar = () => {
                     }}
                   >
                     <FaTicket />
-                    Manage Coupon
+                    Manage Coupons
                   </NavLink>
                 </li>
               </>
