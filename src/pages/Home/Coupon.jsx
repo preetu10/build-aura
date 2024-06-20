@@ -6,7 +6,7 @@ import CouponCard from "./CouponCard";
 
 const Coupon = () => {
   const axiosPublic = useAxiosPublic();
-  const { data: coupons = [] } = useQuery({
+  const { data: coupons = [],isPending } = useQuery({
     queryKey: ["coupons"],
     queryFn: async () => {
       const { data } = await axiosPublic.get("/coupons");
@@ -14,6 +14,10 @@ const Coupon = () => {
     },
   });
   //console.log(coupons);
+  if (isPending)
+    return (
+      <span className=" mx-auto mt-24 loading loading-dots loading-lg"></span>
+    );
   return (
     <div className="my-8">
       <SectionHeading

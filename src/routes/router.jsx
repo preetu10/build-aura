@@ -11,6 +11,7 @@ import PrivateRoutes from "./PrivateRoute";
 import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement";
 import ManageMembers from "../pages/Dashboard/ManageMembers";
 import ManageCoupons from "../pages/Dashboard/ManageCoupons";
+import Apartments from "../pages/Apartments/Apartments";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         {
             path:"/register",
             element:<SignUp></SignUp>
+        },
+        {
+          path:"/apartments",
+          element:<PrivateRoutes><Apartments></Apartments></PrivateRoutes>
         }
     ],
   },
