@@ -3,7 +3,7 @@ import useAuth from "../../customHooks/useAuth";
 import MyAgreements from "./MyAgreements";
 import useAxiosSecure from "../../customHooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import AdminSpecial from "./AdminSpecial";
+import AdminSpecial from "./AdminSpecial/AdminSpecial";
 
 const MyProfile = () => {
   const { user } = useAuth();
@@ -34,8 +34,8 @@ const MyProfile = () => {
           />
         </div>
         <div className="flex-1 p-5">
-          <h1 className="font-semibold text-lg">{user.displayName}</h1>
-          <p>{user.email}</p>
+          <h1 className="font-bold text-xl">{user.displayName}</h1>
+          <p className="font-semibold text-lg">{user.email}</p>
         </div>
       </div>
       {/* table */}
