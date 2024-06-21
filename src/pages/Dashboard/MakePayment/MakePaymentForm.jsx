@@ -13,7 +13,7 @@ const MakePaymentForm = ({agreement}) => {
             return data;
         }
     })
-    console.log(paymentInfo);
+    //console.log(paymentInfo);
 
     const [selectedMonth, setSelectedMonth] = useState("");
     const monthNames = [
@@ -33,7 +33,7 @@ const MakePaymentForm = ({agreement}) => {
       const date = new Date(agreement.acceptDate);
       const monthName = monthNames[date.getMonth()];
       const agreementMonthNumber = monthNames.indexOf(monthName) + 1;//the month number when the agreement was accepted
-      console.log(agreementMonthNumber);
+      //console.log(agreementMonthNumber);
 
       const navigate=useNavigate();
     
@@ -41,7 +41,7 @@ const MakePaymentForm = ({agreement}) => {
     e.preventDefault();
 
     const monthNumber = monthNames.indexOf(selectedMonth) + 1; // month number of which month is selected
-    console.log(monthNumber);
+    //console.log(monthNumber);
 
     const exactMonth=monthNames[agreementMonthNumber]; //for which month's rent needs to be paid if no other month's payment is done.
 
@@ -58,7 +58,7 @@ const MakePaymentForm = ({agreement}) => {
     }
     else{
         const lastPaidMonthNumber = paymentInfo.paidMonthNumber;//last paid month's number
-        console.log(lastPaidMonthNumber);
+        //console.log(lastPaidMonthNumber);
 
 
         const exact=monthNames[lastPaidMonthNumber]//according to laast paid month's number ,which month needs to be paid next 

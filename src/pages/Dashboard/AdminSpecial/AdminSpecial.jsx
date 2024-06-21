@@ -12,7 +12,7 @@ const AdminSpecial = () => {
             return data;
         }
     })
-    console.log(adminSpecial);
+    //console.log(adminSpecial);
     
   return (
     <>

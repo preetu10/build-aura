@@ -3,34 +3,55 @@ import { useParams } from "react-router-dom";
 import SectionHeading from "../../shared/SectionHeading";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../customHooks/useAxiosSecure";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
+import { loadStripe } from "@stripe/stripe-js";
+import {  Elements } from "@stripe/react-stripe-js";
+import CheckOutForm from "./CheckOutForm";
 
+const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
 const Payment = () => {
   const parameterObject = useParams();
   const axiosSecure = useAxiosSecure();
-  const agreementId = parameterObject.id;
+  const [agreement, setAgreement] = useState({});
+  const [rent, setRent] = useState(0);
+  
+  const agreeId = parameterObject.id;
   const monthToPay = parameterObject.month;
-  console.log(monthToPay, agreementId);
-  const { data: agreement = {} } = useQuery({
-    queryKey: ["agreement", agreementId],
-    queryFn: async () => {
-      const { data } = await axiosSecure.get(`/get-agreement/${agreementId}`);
-      return data;
-    },
-  });
+  console.log(monthToPay, agreeId);
+//   const { data: agreement = {} } = useQuery({
+//     queryKey: ["agreement", agreeId],
+//     queryFn: async () => {
+//       const { data } = await axiosSecure.get(`/get-agreement/${agreeId}`);
+//       return data;
+//     },
+//   }); this is causing problem , so as per instructor's instruction, using useEffect and axios only
+useEffect(() => {
+    const fetchAgreement = async () => {
+      try {
+        const response = await axiosSecure.get(`/get-agreement/${agreeId}`);
+        const data = await response.data;
+        setAgreement(data);
+        setRent(data.rent);
+      } catch (err) {
+        console.log(err);
+      } 
+    };
 
-  // Fetch another piece of data, for example, coupon data
+    fetchAgreement();
+  }, [axiosSecure,agreeId]);
+
+  
   const { data: coupons = [] } = useQuery({
-    queryKey: ["coupons"], // Adjust the queryKey and parameter as needed
+    queryKey: ["coupons"], 
     queryFn: async () => {
       const { data } = await axiosSecure.get("/coupons");
       return data;
     },
   });
-  console.log(agreement, coupons);
-  const [rent, setRent] = useState(agreement.rent);
+  //console.log(agreement, coupons);
+  
   const [isCouponInputActive, setIsCouponInputActive] = useState(false);
 
   const handleCouponChange = (e) => {
@@ -40,7 +61,26 @@ const Payment = () => {
       setIsCouponInputActive(false);
     }
   };
-
+  const date = new Date(agreement.acceptDate);
+  const actualRent =parseInt(rent);
+  const paidMonthNumber = parseInt(monthToPay);
+  const acceptMonth = date.getMonth() + 1;
+  const email = agreement.email;
+  const blockName = agreement.blockName;
+  const apartmentNo = agreement.apartmentNo;
+  const floorNo = agreement.floorNo;
+  const agreementId = agreement._id;
+  const data = {
+    rent: actualRent,
+    paidMonthNumber,
+    acceptMonth,
+    email,
+    blockName,
+    apartmentNo,
+    floorNo,
+    agreementId,
+  };
+  console.log(data);
   const handleCoupon = (e) => {
     e.preventDefault();
     const code = e.target.code.value.trim();
@@ -49,48 +89,21 @@ const Payment = () => {
     if (coupon) {
       const discount = (parseFloat(agreement.rent) * coupon.discount) / 100;
       const newRent = parseFloat(agreement.rent) - discount;
-      console.log(newRent);
+     // console.log(newRent);
       setRent(newRent);
       toast.success(`Coupon applied! Your new rent is ${newRent}`);
     } else {
       toast.error("Invalid coupon code. Please try again.");
     }
   };
-  const handlePayment = (e) => {
-    e.preventDefault();
-    const date = new Date(agreement.acceptDate);
 
-    const cardNumber=e.target.cardNumber.value;
-    const actualRent=rent;
-    const paidMonthNumber=monthToPay;
-    const acceptMonth=date.getMonth()+1;
-    const email=agreement.email;
-    const blockName=agreement.blockName;
-    const apartmentNo=agreement.apartmentNo;
-    const floorNo=agreement.floorNo;
-    const agreementId=agreement._id;
-    const data={
-        cardNumber,
-        rent:actualRent,
-        paidMonthNumber,
-        acceptMonth,
-        email,
-        blockName,
-        apartmentNo,
-        floorNo,
-        agreementId,
-    }
-    console.log(data);
 
-  };
 
   return (
     <div>
-         <Helmet>
-      <title>
-        BuildAura|Make-Payment
-      </title>
-    </Helmet>
+      <Helmet>
+        <title>BuildAura|Make-Payment</title>
+      </Helmet>
       <SectionHeading heading={"Make Payment"} subheading={""} />
       <div>
         <div className="flex flex-col items-center justify-center px-2">
@@ -125,37 +138,10 @@ const Payment = () => {
         </div>
       </div>
       <div>
-        <div className="flex flex-col items-center justify-center px-2">
-          <div className="w-full py-6 rounded-xl border-[#CC935C] border-2 max-w-2xl shadow-2xl bg-base-100 mt-10 mb-6">
-            <form className="card-body" onSubmit={handlePayment}>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Card Number</span>
-                </label>
-                <input
-                  type="text"
-                  name="cardNumber"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Total Rent</span>
-                </label>
-                <input
-                  type="email"
-                  value={rent}
-                  className="input input-bordered"
-                  disabled={true}
-                />
-              </div>
-              <div className="form-control mt-6">
-                <button className="btn bg-[#1967D2] text-white">Pay</button>
-              </div>
-            </form>
-          </div>
-        </div>
+
+        <Elements stripe={stripePromise}>
+        <CheckOutForm  data={data}></CheckOutForm>
+        </Elements>
       </div>
     </div>
   );
