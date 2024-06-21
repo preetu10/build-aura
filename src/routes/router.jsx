@@ -14,6 +14,9 @@ import ManageCoupons from "../pages/Dashboard/ManageCoupons";
 import Apartments from "../pages/Apartments/Apartments";
 import AdminRoute from "./AdminRoute";
 import AgreementRequests from "../pages/Dashboard/AgreementRequests";
+import MakePayment from "../pages/Dashboard/MakePayment/MakePayment";
+import Payment from "../pages/Dashboard/MakePayment/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +55,18 @@ const router = createBrowserRouter([
        {
         path:"announcements",
         element:<Announcements></Announcements>
+       },
+       {
+        path:"make-payment",
+        element:<MakePayment></MakePayment>
+       },
+       {
+        path:"payment/:id/:month",
+        element:<Payment></Payment>
+       },
+       {
+        path:"payment-history",
+        element:<PaymentHistory></PaymentHistory>
        },
       //  admin routes
        {
