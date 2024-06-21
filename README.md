@@ -10,7 +10,7 @@ Welcome to BuildAura, a comprehensive Building Management System (BMS) designed 
 
 ## Live Site URL
 
-[Visit BuildAura]()
+[Visit BuildAura](https://buildaura-e28d5.web.app/)
 
 ## Features
 
