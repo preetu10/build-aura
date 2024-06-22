@@ -107,7 +107,7 @@ useEffect(() => {
       <SectionHeading heading={"Make Payment"} subheading={""} />
       <div>
         <div className="flex flex-col items-center justify-center px-2">
-          <div className="w-full py-6 rounded-xl border-[#CC935C] border-2 max-w-2xl shadow-2xl bg-base-100 mt-10 mb-6">
+          <div className="w-full py-6 rounded-xl border-[#CC935C] border-2 max-w-2xl shadow-md shadow-amber-500 bg-base-100 mt-10 mb-6 hover:shadow-lg">
             <p className="mx-auto text-center px-5 text-gray-500">
               If you apply the coupon code, your rent will be decreased to that
               corresponding coupon's percentage

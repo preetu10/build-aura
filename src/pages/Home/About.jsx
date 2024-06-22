@@ -8,7 +8,7 @@ const About = () => {
         subheading={"Discover the Perfect Blend of Comfort and Convenience"}
       ></SectionHeading>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5  lg:gap-10 my-6 items-center">
-        <div>
+        <div data-aos="zoom-in" data-aos-duration="1000">
           <img src="/about.jpg" alt="" className="rounded-2xl px-2" />
         </div>
         <div className="text-lg text-gray-600 px-2">

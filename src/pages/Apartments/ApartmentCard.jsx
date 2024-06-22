@@ -65,7 +65,7 @@ const ApartmentCard = ({ apartment, refetch }) => {
 
   return (
     <div>
-      <div className="card flex flex-col md:flex-row  justify-center items-center border-2 border-amber-800 mt-6 bg-base-100 shadow-md shadow-amber-600 hover:shadow-lg">
+      <div data-aos="zoom-out" data-aos-duration="1000" className="card flex flex-col md:flex-row  justify-center items-center border-2 border-amber-800 mt-6 bg-base-100 shadow-md shadow-amber-600 hover:shadow-lg">
         <figure className=" px-4 pt-5 md:pt-0">
           <img
             src={apartment.apartmentImage}

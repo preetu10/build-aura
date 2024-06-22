@@ -36,7 +36,7 @@ const MakeAnnouncement = () => {
         <title>BuildAura|Admin-Make-Announcement</title>
       </Helmet>
       <SectionHeading heading={"Make Announcement"} subheading={""} />
-      <div className="card  mx-auto mt-8 px-2 shrink-0 w-full md:max-w-xl shadow-amber-600 shadow-md border-t-0 bg-base-100">
+      <div className="card  mx-auto mt-8 px-2 shrink-0 w-full md:max-w-xl shadow-amber-600 shadow-md hover:shadow-lg border-t-0 bg-base-100">
         <form onSubmit={handleSubmit} className="card-body">
           <div className="form-control">
             <label className="label">

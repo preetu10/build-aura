@@ -71,7 +71,7 @@ const LogIn = () => {
             <h1 className="text-5xl mt-16 font-semibold w-full ">Welcome to <span className=" text-[#202124] font-semibold">Build<span className="text-[#1967D2]">Aura</span></span>!</h1>
             <Lottie animationData={login} classID="mb-5"/>
           </div>
-          <div className="card  w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card shadow-xl shadow-[#5566a7] hover:shadow-2xl w-full max-w-sm  bg-base-100">
             <h1 className="text-center  mt-10 text-black text-3xl font-bold">Log In Now</h1>
             <form onSubmit={handleLogin} className="card-body">
               <div className="form-control mb-2 ">

@@ -98,7 +98,7 @@ const CheckOutForm = ({data}) => {
   };
   return (
     <div className="flex flex-col items-center justify-center px-2">
-      <div className="w-full py-6 rounded-xl border-[#CC935C] border-2 max-w-2xl shadow-2xl bg-base-100 mt-10 mb-6">
+      <div className="w-full py-6 rounded-xl border-[#CC935C] border-2 shadow-amber-500  max-w-2xl shadow-md hover:shadow-lg bg-base-100 mt-10 mb-6">
         <form className="card-body" onSubmit={handlePayment}>
           <div
             style={{

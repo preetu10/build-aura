@@ -7,9 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../customHooks/useAuth";
 import useAxiosPublic from "../customHooks/useAxiosPublic";
 import { updateProfile } from "firebase/auth";
+import Marquee from "react-fast-marquee";
 
-// const image_hosting_key = import.meta.env.IMAGE_HOSTING_KEY;
-// const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const SignUp = () => {
   const [showPW, setShowPW] = useState(false);
   const { createUser, logout, signInWithGoogle } = useAuth();
@@ -115,11 +115,11 @@ const SignUp = () => {
           </span>
           !
         </h1>
-        <p className="font-medium text-gray-500 my-5">
+        <Marquee><p className="font-medium text-xl text-gray-500 my-5">
           Create an account providing appropriate information and join our
           community to get updated about us.
-        </p>
-        <div className="card w-full lg:w-[450px] mx-auto mt-4  shadow-2xl shadow-[#5566a7] bg-base-100">
+        </p></Marquee>
+        <div className="card w-full lg:w-[450px] mx-auto mt-4  shadow-xl shadow-[#5566a7] hover:shadow-2xl bg-base-100">
           <h1 className="text-center  mt-10 text-black text-3xl font-bold">
             Register Now
           </h1>

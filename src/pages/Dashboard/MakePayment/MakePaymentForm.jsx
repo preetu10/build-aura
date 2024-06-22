@@ -75,7 +75,7 @@ const MakePaymentForm = ({agreement}) => {
     return (
         <div>
             <div className="flex flex-col items-center justify-center px-2">
-        <div className="w-full py-6 rounded-xl border-[#CC935C] border-2 max-w-2xl shadow-2xl bg-base-100 mt-10 mb-6">
+        <div className="w-full py-6 rounded-xl border-[#CC935C] border-2 max-w-2xl  shadow-md shadow-amber-500 hover:shadow-xl bg-base-100 mt-10 mb-6">
           <form className="card-body" onSubmit={handleMakePayment}>
             <div className="form-control">
               <label className="label">
