@@ -2,7 +2,7 @@
 const CouponCard = ({discount,code,description}) => {
     return (
         <div>
-              <div className="card mx-auto w-4/5 px-2 md:w-full border-2 border-amber-500 shadow-lg shadow-amber-600 bg-sky-100 text-[#1967D2] hover:shadow-xl">
+              <div className="card  w-4/5  md:w-full border-2 border-amber-500 shadow-lg shadow-amber-600 bg-sky-100 text-[#1967D2] hover:shadow-xl">
           <div className="grid grid-cols-2 items-center divide-x-4 divide-solid divide-amber-600">
             <div className="card-body">
               <h2 className="font-extrabold text-3xl">
