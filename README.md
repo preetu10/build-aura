@@ -3,14 +3,18 @@
 
 Welcome to BuildAura, a comprehensive Building Management System (BMS) designed to streamline the management of a single building. Our platform caters to not only user and admin functionalities but also member functionalities, ensuring a seamless experience for all stakeholders.
 
-## Admin Credentials
+<!-- ## Admin Credentials
 
 - **Admin Email**: maharunnessa12@gmail.com
-- **Password**: Maharun123
+- **Password**: Maharun123 -->
 
 ## Live Site URL
 
 [Visit BuildAura](https://buildaura-e28d5.web.app/)
+
+## Server Side Github Link
+
+https://github.com/preetu10/build-aura-server
 
 ## Features
 
