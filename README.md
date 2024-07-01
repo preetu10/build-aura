@@ -16,6 +16,15 @@ Welcome to BuildAura, a comprehensive Building Management System (BMS) designed 
 
 https://github.com/preetu10/build-aura-server
 
+## Used Tools
+
+- React JS
+- Tailwind CSS
+- Express
+- Firebase
+- MongoDB
+- Stripe
+
 ## Features
 
 1. **Responsive Design**: BuildAura is fully responsive, ensuring optimal user experience across mobile, tablet, and desktop devices, including the dashboard.
